@@ -8,7 +8,7 @@ export default async function sendTextInput(langData,setFetching) {
   }
   try {
     setFetching(()=>true)
-    const res = await axios.post('https://langbridge2.onrender.com/langflow/run-flow', object)
+    const res = await axios.post('https://langbridge2.onrender.com/api/v1/langflow/run-flow', object)
     console.log("RESPONSE : ",res)
     setFetching(()=>false)
     return res.data.output;
@@ -25,7 +25,7 @@ export const sendAudioFile = async(audioFile) =>{
     formData.append('audio', audioFile); // 'audio' is the field name expected by the backend
 
     // Send a POST request to the backend API
-    const response = await axios.post('https://langbridge2.onrender.com/api/transcribe', formData, {
+    const response = await axios.post('https://langbridge2.onrender.com/api/transcribe/', formData, {
       headers: {
         'Content-Type': 'multipart/form-data', // Ensure correct content type
       },
